@@ -1,7 +1,7 @@
 import { Button, Flex, Table, Tooltip } from "antd";
 import { FaPencilAlt } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewLaboratory from "./NewLaboratory";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteLab } from "../redux/labSlice";
@@ -12,13 +12,14 @@ export default function Laboratory() {
   const [show, setShow] = useState(false);
   const [close, setClose] = useState(false);
   const navigate = useNavigate();
-  // const [labs, setLabs] = useState(false);
+  const [labs, setLabs] = useState([]);
 
-  // useEffect(() => {
-  //   setLabs()
-  // }, [third])
+  const lab = useSelector((state) => state.labs.labs);
 
-  const labs = useSelector((state) => state.labs.labs);
+  useEffect(() => {
+    setLabs(JSON.parse(localStorage.getItem("labData")) || lab);
+  }, []);
+
   const header = [
     {
       title: "Name",

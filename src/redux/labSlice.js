@@ -135,7 +135,7 @@ const getStoredLabs = () => {
     localStorage.setItem("labData", JSON.stringify(labData));
   }
 
-  return storedLabs ? JSON.parse(storedLabs) : labData;
+  return storedLabs.length > 0 ? JSON.parse(storedLabs) : labData;
 };
 
 const saveLabsToStorage = (labs) => {
@@ -156,9 +156,10 @@ export const addLab = createAsyncThunk("labs/addLab", async (newLab) => {
 
 export const editLab = createAsyncThunk("labs/editLab", async (updatedLab) => {
   const labs = getStoredLabs();
-  console.log(labs, "labslabslabs");
 
-  const index = labs.findIndex((lab) => lab.id === updatedLab.id);
+  const index = labs.findIndex(
+    (lab) => parseInt(lab.id) === parseInt(updatedLab.id)
+  );
   if (index !== -1) {
     labs[index] = updatedLab;
     saveLabsToStorage(labs);
