@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import Laboratory from "./home/Laboratory";
 
-import labData from "./data/lab_data.json";
 import { useEffect } from "react";
 import { fetchLabs, setLabs } from "./redux/labSlice";
+import Router from "../Router";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ function App() {
 
   return (
     <div className="">
-      <Laboratory />
+      <Router />
     </div>
   );
 }

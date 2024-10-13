@@ -5,11 +5,13 @@ import { useState } from "react";
 import NewLaboratory from "./NewLaboratory";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteLab } from "../redux/labSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Laboratory() {
   const [editLabId, setEditLabId] = useState(null);
   const [show, setShow] = useState(false);
   const [close, setClose] = useState(false);
+  const navigate = useNavigate();
   // const [labs, setLabs] = useState(false);
 
   // useEffect(() => {
@@ -60,6 +62,7 @@ export default function Laboratory() {
         <Button
           onClick={() => {
             setShow(true);
+            navigate(`/createlaboratory/0`);
           }}
           className=" bg-gray-100"
         >
@@ -81,8 +84,10 @@ export default function Laboratory() {
                       <button
                         onClick={() => {
                           //   change("edit", _data[actionID]);
-                          setEditLabId(_data.id);
-                          setShow(true);
+                          // setEditLabId(_data.id);
+                          navigate(`/createlaboratory/${_data.id}`);
+
+                          // setShow(true);
                         }}
                       >
                         <FaPencilAlt className="text-xs 2xl:text-sm" />
@@ -110,16 +115,17 @@ export default function Laboratory() {
         onRow={(e) => ({
           onclick: (data) => {
             console.log(e, data);
+            navigate(`/labs/${e.id}`);
           },
           onClickCapture: (v) => {
-            // navigate("/Service-Provider-Profile");
             // change(v);
+            // navigate(`/labs/${e.id}`);
 
             console.log(e, v);
           },
         })}
       />
-      {show && (
+      {/* {show && (
         <NewLaboratory
           open={show}
           labId={editLabId}
@@ -129,7 +135,7 @@ export default function Laboratory() {
             setShow(false);
           }}
         />
-      )}
+      )} */}
     </div>
   );
 }

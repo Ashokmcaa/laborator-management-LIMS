@@ -557,4 +557,22 @@ const status = [
     label: "Under Maintenance",
   },
 ];
-export { data, status };
+const Available = [
+  {
+    value: "Xray",
+    label: "Xray",
+  },
+  {
+    value: "MRI Scanner",
+    label: "MRI Scanner",
+  },
+  {
+    value: "Autoclave",
+    label: "Autoclave",
+  },
+  {
+    value: "Ultrasound",
+    label: "Ultrasound",
+  },
+];
+export { data, status, Available };

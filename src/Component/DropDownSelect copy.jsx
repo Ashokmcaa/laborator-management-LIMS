@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Select } from "antd";
+import { Select, Space } from "antd";
 import { FiAlertCircle } from "react-icons/fi";
 import { FaAsterisk } from "react-icons/fa";
 
@@ -31,20 +31,26 @@ export default function DropDownSelect({
       </div>
       <span className={` ${className} `}>
         <Select
-          className=" w-full"
-          showSearch
+          mode="multiple"
+          style={{
+            width: "100%",
+          }}
           placeholder={`Select ${title}`}
-          optionFilterProp="label"
+          defaultValue={value}
           onChange={change}
-          onSearch={onSearch}
           options={options}
-          value={value}
+          optionRender={(option) => (
+            <Space>
+              <span role="img" aria-label={option.data.label}>
+                {option.data.emoji}
+              </span>
+              {option.data.desc}
+            </Space>
+          )}
         />
 
         {error && (
-          <FiAlertCircle
-            className={`absolute top-2.5 right-2 mr-3 transform -translate-y-1/5 text-red-400`}
-          />
+          <FiAlertCircle className="absolute top-3.5 right-4 mr-5 mt-5 transform -translate-y-3/5 text-red-400" />
         )}
 
         {error && (
